@@ -14,7 +14,6 @@ import org.jnativehook.NativeHookException;
 import org.jnativehook.keyboard.NativeKeyEvent;
 import org.jnativehook.keyboard.NativeKeyListener;
 
-import com.fortnitemaincheats.KeyHandler;
 
 public class KeyboardHandler implements NativeKeyListener{
 	private HandleOutputs ho;
