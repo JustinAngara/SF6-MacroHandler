@@ -32,10 +32,15 @@ public class KeyboardHandler implements NativeKeyListener{
 			}
 	
 		});
-		combo2 = new Timer(250,(ActionEvent e)->{
-
-		});
-		
+//		combo2 = new Timer(250,(ActionEvent e)->{
+//			try {
+//				ho.performString("CommandGrab");
+//			} catch (IOException e1) {
+//				// TODO Auto-generated catch block
+//				e1.printStackTrace();
+//			}
+//		});
+//		
 		
 		
 	}
@@ -65,7 +70,8 @@ public class KeyboardHandler implements NativeKeyListener{
 		if(arg0.getKeyCode() == NativeKeyEvent.VC_2) {
 			System.out.println("TOUCH 2");
 			try {
-				ho.performCombo("Killer Bee Spin", isFacingRight);
+				ho.performCombo("Delta Red Assault",isFacingRight);
+				
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -75,7 +81,7 @@ public class KeyboardHandler implements NativeKeyListener{
 		if(arg0.getKeyCode() == NativeKeyEvent.VC_3) {
 			System.out.println("TOUCH 3");
 			try {
-				ho.performCombo("Delta Red Assault",isFacingRight);
+				ho.performCombo("Bolshoi Storm Buster", isFacingRight);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -86,7 +92,7 @@ public class KeyboardHandler implements NativeKeyListener{
 		if(arg0.getKeyCode() == NativeKeyEvent.VC_E) {
 			System.out.println("TOUCH E");
 			try {
-				ho.performCombo("Spiral Arrow",isFacingRight);
+				ho.performCombo("Screw Piledriver",isFacingRight);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -96,7 +102,7 @@ public class KeyboardHandler implements NativeKeyListener{
 		if(arg0.getKeyCode() == NativeKeyEvent.VC_Q) {
 			System.out.println("TOUCH Q");
 			try {
-				ho.performCombo("Quick Spin Knuckle",isFacingRight);
+				ho.performCombo("CommandGrab",isFacingRight);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -106,7 +112,28 @@ public class KeyboardHandler implements NativeKeyListener{
 		if(arg0.getKeyCode() == NativeKeyEvent.VC_Z) {
 			System.out.println("TOUCH Z");
 			try {
-				ho.performCombo("Combo3",isFacingRight);
+				
+				ho.performCombo("Quick Spin Knuckle",isFacingRight);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		if(arg0.getKeyCode() == NativeKeyEvent.VC_M) {
+			System.out.println("Touch left");
+			try {
+				ho.performCombo("CommandGrab",isFacingRight);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		if(arg0.getKeyCode() == NativeKeyEvent.VC_C) {
+			System.out.println("Touch C");
+			try {
+				ho.performCombo("JumpGrab",isFacingRight);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -119,9 +146,7 @@ public class KeyboardHandler implements NativeKeyListener{
 			System.out.println(combo1);
 			
 		}
-		if(arg0.getKeyCode() == NativeKeyEvent.VC_SHIFT_L) {
-			combo2.start();
-		}
+
 	}
 	public void test() {
 		
@@ -133,9 +158,9 @@ public class KeyboardHandler implements NativeKeyListener{
 		if(arg0.getKeyCode() == NativeKeyEvent.VC_CONTROL_L) {
 			combo1.stop();
 		}
-		if(arg0.getKeyCode() == NativeKeyEvent.VC_SHIFT_L) {
-			combo2.stop();
-		}
+//		if(arg0.getKeyCode() == NativeKeyEvent.VC_SHIFT_L) {
+//			combo2.stop();
+//		}
 	}
 
 	@Override
