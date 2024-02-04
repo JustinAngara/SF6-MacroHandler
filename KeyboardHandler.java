@@ -18,20 +18,39 @@ import org.jnativehook.keyboard.NativeKeyListener;
 public class KeyboardHandler implements NativeKeyListener{
 	private HandleOutputs ho;
 	private boolean isFacingRight;
+	private boolean canChangeDir;
+	private boolean toggledOn;
 	private Timer combo1; 
 	private Timer combo2;
+	
+	private DriveImpactCol dc;
+	
+	private static ArrowDisplay ad;
+	
 	public KeyboardHandler() throws AWTException {
+		toggledOn = true;
+		canChangeDir = true;
 		ho = new HandleOutputs();
+		dc = new DriveImpactCol();
+		
+		
 		combo1 = new Timer(5,(ActionEvent e)->{
-			
+	
 			try {
-				ho.performString("Combo1");
+				
+				if(dc.isSufficientBlackPixels()) {
+					// perform drive impact
+					ho.performCombo("DriveImpact",true);
+				}
+			} catch (AWTException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-	
 		});
+		combo1.start();
 //		combo2 = new Timer(250,(ActionEvent e)->{
 //			try {
 //				ho.performString("CommandGrab");
@@ -46,13 +65,47 @@ public class KeyboardHandler implements NativeKeyListener{
 	}
 	@Override
 	public void nativeKeyPressed(NativeKeyEvent arg0) {
+		if(arg0.getKeyCode()==NativeKeyEvent.VC_F8) {
+			toggledOn = !toggledOn;
+			System.out.println("ToggledOn status: "+toggledOn);
+			
+		}
+		
+		if(toggledOn) {
+			combo1.start();
+		} else {
+			combo1.stop();
+			return;
+		}
+		
+		if(arg0.getKeyCode()==NativeKeyEvent.VC_0) {
+			canChangeDir = false;	
+			System.out.println("CAN'T CHANGE DIR");
+		}
+		if(arg0.getKeyCode()==NativeKeyEvent.VC_9) {
+			canChangeDir = true;
+			System.out.println("CAN CHANGE DIR");
+		}
+		
+		/*
+Send, {0 down}
+Send, {0 up}
+Send, {9 down}
+Send, {9 up}
+		 * */
+		if(!toggledOn | !canChangeDir) {
+			return;
+		}
+		
 		
 		// finds direction
-		if(arg0.getKeyCode()==NativeKeyEvent.VC_D) {
+		if(arg0.getKeyCode()==NativeKeyEvent.VC_D && canChangeDir) {
 			isFacingRight = true;
+			System.out.println("IS FACING RIGHT");
 		}
-		if(arg0.getKeyCode()==NativeKeyEvent.VC_A) {
+		if(arg0.getKeyCode()==NativeKeyEvent.VC_A && canChangeDir) {
 			isFacingRight = false;
+			System.out.println("IS FACING LEFT");
 		}
 
 		
@@ -140,12 +193,7 @@ public class KeyboardHandler implements NativeKeyListener{
 			}
 		}
 		
-		// strings, use timer to prevent constant repetition
-		if(arg0.getKeyCode() == NativeKeyEvent.VC_CONTROL_L) {
-			combo1.start();
-			System.out.println(combo1);
-			
-		}
+
 
 	}
 	public void test() {
@@ -154,10 +202,7 @@ public class KeyboardHandler implements NativeKeyListener{
 	}
 	@Override
 	public void nativeKeyReleased(NativeKeyEvent arg0) {
-		// TODO Auto-generated method stub
-		if(arg0.getKeyCode() == NativeKeyEvent.VC_CONTROL_L) {
-			combo1.stop();
-		}
+
 //		if(arg0.getKeyCode() == NativeKeyEvent.VC_SHIFT_L) {
 //			combo2.stop();
 //		}
@@ -172,6 +217,7 @@ public class KeyboardHandler implements NativeKeyListener{
 
 	
 	public static void run() throws AWTException {
+		ad = new ArrowDisplay();	
 		GlobalScreen.addNativeKeyListener(new KeyboardHandler());
 		LogManager.getLogManager().reset();
 

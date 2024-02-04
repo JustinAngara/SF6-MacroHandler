@@ -1,6 +1,7 @@
 package com.sf.main;
 
 import java.awt.AWTException;
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -73,7 +74,9 @@ public class Main {
 		});
 		btnNewButton.setBounds(143, 130, 140, 23);
 		frame.getContentPane().add(btnNewButton);
-		
+
+		frame.setAlwaysOnTop(true);
+		frame.setFocusable(false);
 		
 	}
 }

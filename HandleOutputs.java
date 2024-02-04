@@ -10,6 +10,7 @@ public class HandleOutputs {
 	private Robot bot;
 	private Random rn;
 	private Runtime runtime;
+	
 	public HandleOutputs() throws AWTException {
 		bot = new Robot();
 		rn = new Random();
