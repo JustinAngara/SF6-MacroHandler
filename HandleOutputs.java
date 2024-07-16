@@ -40,7 +40,7 @@ public class HandleOutputs {
 
 	public void re(String s) throws IOException {
 		String fileLoc = "C:\\Users\\justi\\eclipse-workspace\\JustinProgram\\src\\com\\autoexec files\\"+s+".ahk";
-	    String ahkPath = "C:\\Program Files\\AutoHotkey\\AutoHotkey.exe";
+	    String ahkPath = "C:\\Program Files\\AutoHotkey\\v2\\AutoHotkey.exe";
 
 	    runtime.exec(new String[] { ahkPath, fileLoc} );
 	    Thread.currentThread();

@@ -1,5 +1,10 @@
 package com.sf.main;
 
+import com.github.kwhat.jnativehook.keyboard.NativeKeyListener;
+import com.github.kwhat.jnativehook.NativeHookException;
+import com.github.kwhat.jnativehook.GlobalScreen;
+import com.github.kwhat.jnativehook.keyboard.NativeKeyEvent;
+
 import java.awt.AWTException;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
@@ -9,13 +14,7 @@ import java.util.logging.Logger;
 
 import javax.swing.Timer;
 
-import org.jnativehook.GlobalScreen;
-import org.jnativehook.NativeHookException;
-import org.jnativehook.keyboard.NativeKeyEvent;
-import org.jnativehook.keyboard.NativeKeyListener;
-
-
-public class KeyboardHandler implements NativeKeyListener{
+public class KeyboardHandler implements NativeKeyListener {
 	private HandleOutputs ho;
 	private boolean isFacingRight;
 	private boolean canChangeDir;
